@@ -1,10 +1,5 @@
 FROM php:7.3-apache
 
-
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
 RUN a2enmod rewrite
 
 RUN apt-get update && apt-get install -y \
@@ -21,16 +16,23 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mysqli pdo pdo_mysql \
     && docker-php-ext-enable mysqli
 
-RUN yes | pecl install xdebug \
-	&&  docker-php-ext-enable xdebug \
-    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_host=192.168.65.2" >> /usr/local/etc/php/conf.d/xdebug.ini
+#RUN yes | pecl install xdebug \
+#	&&  docker-php-ext-enable xdebug \
+#    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.remote_host=192.168.65.2" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/hackqa/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 
 # RUN cp  /usr/local/etc/php/php.ini-development /usr/local/etc/php/conf.d/php.ini
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer global require laravel/installer
+RUN export PATH="$HOME/.composer/vendor/bin:$PATH"
