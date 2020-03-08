@@ -1,3 +1,2 @@
 
-
-<a href="/question/{{$question->id}}">{{ $question }}</a>
+<a href="/question/{{$question->question_id}}">{{ $question->text }}</a>

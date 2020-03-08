@@ -12,8 +12,8 @@ class QuestionController extends Controller
 {
     /**
      * List questions
-     *  @Get("/")
      *
+     * @Get("/")
      */
     public function listQuestionsAction()
     {
@@ -25,13 +25,23 @@ class QuestionController extends Controller
 
     /**
      * create question
+     *
      * @Post("/question/add")
      *
      * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function addQuestionAction(Request $request)
     {
+        $questionInput = $request->get('question');
         $question = new Question();
+        $question->text = $questionInput;
+        $question->save();
+
+
+        return redirect()->action('QuestionController@listQuestionsAction');
+
     }
 
 
@@ -46,8 +56,10 @@ class QuestionController extends Controller
      */
     public function showQuestionAction(Request $request, $questionId)
     {
+        $question = Question::where('question_id', $questionId)->first();
+
         $answers = Answer::all();
 
-        return view('main-answer', ['answers' => $answers ]);
+        return view('main-answer', ['answers' => $answers, 'question' => $question ]);
     }
 }

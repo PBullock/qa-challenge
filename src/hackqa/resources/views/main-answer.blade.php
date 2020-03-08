@@ -1,7 +1,12 @@
 @extends('partials.layout')
 
 @section('content')
-    <div>
-        test
-    </div>
+    @component('partials.answers.form', ['question' => $question])
+    @endcomponent
+
+    @component('partials.answers.list', ['answers' => $answers])
+        @slot('header')
+            <h2>All the answers:</h2>
+        @endslot
+    @endcomponent
 @endsection

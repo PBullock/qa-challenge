@@ -17,6 +17,7 @@ class Questions extends Migration
             $table->increments('question_id')->unsigned();
             $table->string('text')->nullable(false);
             $table->integer('answer_count')->default(0);
+            $table->timestamps();
         });
     }
 
