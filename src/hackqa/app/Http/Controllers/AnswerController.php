@@ -17,6 +17,8 @@ class AnswerController extends Controller
     public function addAnswer(Request $request, $questionId)
     {
         $answer = new Answer();
+
+
     }
 
 }

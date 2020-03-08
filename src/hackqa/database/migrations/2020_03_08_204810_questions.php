@@ -14,7 +14,7 @@ class Questions extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->primary('question_id');
+            $table->increments('question_id')->unsigned();
             $table->string('text')->nullable(false);
             $table->integer('answer_count')->default(0);
         });

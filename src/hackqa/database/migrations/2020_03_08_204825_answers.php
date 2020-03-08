@@ -14,8 +14,13 @@ class Answers extends Migration
     public function up()
     {
         Schema::create('answers', function (Blueprint $table) {
-            $table->primary('answer_id');
+            $table->increments('answer_id')->unsigned();
             $table->string('text')->nullable(false);
+            $table->integer('question_id')->length(11)->unsigned();
+
+        });
+
+        Schema::table('answers', function (Blueprint $table) {
             $table->foreign('question_id')->references('question_id')->on('questions');
         });
     }

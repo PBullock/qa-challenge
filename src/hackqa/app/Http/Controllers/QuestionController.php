@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Question;
 use Collective\Annotations\Routing\Annotations\Annotations\Get;
 use Collective\Annotations\Routing\Annotations\Annotations\Post;
@@ -17,9 +18,9 @@ class QuestionController extends Controller
     public function listQuestionsAction()
     {
 
+        $questions = Question::all();
 
-
-        return view('main-question');
+        return view('main-question', ['questions' => $questions]);
     }
 
     /**
@@ -45,6 +46,8 @@ class QuestionController extends Controller
      */
     public function showQuestionAction(Request $request, $questionId)
     {
-        return view('main-answer');
+        $answers = Answer::all();
+
+        return view('main-answer', ['answers' => $answers ]);
     }
 }
