@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: hack_qa
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: hackqapass
+    volumes:
+      - ./docker/db:/var/db
+      - hack-challenge-db:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8600:8080
+
+  web:
+    build: ./docker
+    env_file: ./.env
+    ports:
+      - 8500:80
+      - 9000
+    volumes:
+      - ./src:/var/www/html:z
+
+volumes:
+  hack-challenge-db:
