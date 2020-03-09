@@ -17,6 +17,11 @@
 <body>
 
 <div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <a href="/"><h1>Q&A Simple w/ Bootstrap</h1></a>
+        </div>
+    </div>
     @yield('content')
 </div>
 

@@ -25,11 +25,16 @@ class QuestionController extends Controller
     {
 
         $questions = Question::all();
-        $placeholder = ['who?', 'what?', 'why?', 'where?'];
+        $placeholder = [
+            'who?',
+            'what?',
+            'why?',
+            'where?'
+            ];
         shuffle($placeholder);
         $data = [
             'questions' => $questions,
-            'placeholder' => $placeholder[0]
+            'placeholder' => array_shift($placeholder)
         ];
 
         return view('main-question', $data);
