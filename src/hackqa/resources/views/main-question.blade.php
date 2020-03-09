@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        @component('partials.questions.form')
+        @component('partials.questions.form', ['placeholder' => $placeholder ])
         @endcomponent
     </div>
     <div>

@@ -3,7 +3,7 @@
 $router->get('/', [
 	'uses' => 'App\Http\Controllers\QuestionController@listQuestionsAction',
 	'as' => NULL,
-	'middleware' => [],
+	'middleware' => ['web'],
 	'where' => [],
 	'domain' => NULL,
 ]);
@@ -11,7 +11,7 @@ $router->get('/', [
 $router->post('question/add', [
 	'uses' => 'App\Http\Controllers\QuestionController@addQuestionAction',
 	'as' => NULL,
-	'middleware' => [],
+	'middleware' => ['web'],
 	'where' => [],
 	'domain' => NULL,
 ]);
@@ -19,7 +19,7 @@ $router->post('question/add', [
 $router->get('question/{questionId}', [
 	'uses' => 'App\Http\Controllers\QuestionController@showQuestionAction',
 	'as' => NULL,
-	'middleware' => [],
+	'middleware' => ['web'],
 	'where' => [],
 	'domain' => NULL,
 ]);
@@ -27,7 +27,15 @@ $router->get('question/{questionId}', [
 $router->post('question/{questionId}/answer', [
 	'uses' => 'App\Http\Controllers\AnswerController@addAnswer',
 	'as' => NULL,
-	'middleware' => [],
+	'middleware' => ['web'],
+	'where' => [],
+	'domain' => NULL,
+]);
+
+$router->post('question/{questionId}/answer', [
+	'uses' => 'App\Http\Controllers\AnswerController@addAnswer',
+	'as' => NULL,
+	'middleware' => ['web'],
 	'where' => [],
 	'domain' => NULL,
 ]);
