@@ -1,10 +1,9 @@
 {{ $header }}
-
+<div class="card" >
+    <ul class="list-group list-group-flush">
 @foreach ($questions as $question)
-    <div class="card" style="width: 40%">
-        <ul class="list-group list-group-flush">
-            @component('partials.questions.single', ['question' => $question])
+            @component('partials.questions.single', ['question' => $question, 'loop' => $loop])
             @endcomponent
-        </ul>
-    </div>
 @endforeach
+    </ul>
+</div>

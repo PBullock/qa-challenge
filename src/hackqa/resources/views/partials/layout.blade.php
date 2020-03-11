@@ -19,10 +19,14 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center">
-            <a href="/"><h1>Q&A Simple w/ Bootstrap</h1></a>
+            <a href="/"><h1 class="text-dark">Q&A Simple w/ Bootstrap</h1></a>
         </div>
     </div>
-    @yield('content')
+    <div class="row">
+        <div class="col-sm-12 col-md-6 d-md-flex flex-column justify-content-around">
+            @yield('content')
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

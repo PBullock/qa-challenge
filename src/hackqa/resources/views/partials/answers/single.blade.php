@@ -1,3 +1,3 @@
-<li class="list-group-item">
-    <div class="">{{$answer->text}}</div>
+<li class="list-group-item bg-{{ $loop->index % 2 ? 'light' : 'white' }}">
+    <div class="">{{ $answer->text }}</div>
 </li>
