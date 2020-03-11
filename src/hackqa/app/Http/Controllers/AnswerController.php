@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Http\Requests\AddAnswer;
 use App\Question;
 use Collective\Annotations\Routing\Annotations\Annotations\Middleware;
 use Collective\Annotations\Routing\Annotations\Annotations\Post;
@@ -16,11 +17,13 @@ class AnswerController extends Controller
      *
      * @Middleware("web")
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\AddAnswer $request
+     *
+     * @param                              $questionId
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addAnswer(Request $request, $questionId)
+    public function addAnswer(AddAnswer $request, $questionId)
     {
         $answerInput = $request->get('answer');
         $question = Question::where('question_id', $questionId)->first();
