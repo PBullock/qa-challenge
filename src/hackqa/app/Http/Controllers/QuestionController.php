@@ -24,7 +24,7 @@ class QuestionController extends Controller
     public function listQuestionsAction()
     {
 
-        $questions = Question::all();
+        $questions = Question::orderBy('created_at', 'desc')->get();
         $placeholder = [
             'who?',
             'what?',
@@ -78,7 +78,7 @@ class QuestionController extends Controller
     {
         $question = Question::where('question_id', $questionId)->first();
 
-        $answers = Answer::where('question_id', $questionId)->get();
+        $answers = Answer::where('question_id', $questionId)->orderBy('created_at', 'asc')->get();
 
         return view('main-answer', ['answers' => $answers, 'question' => $question]);
     }
