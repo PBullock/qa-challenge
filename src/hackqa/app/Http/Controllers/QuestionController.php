@@ -9,6 +9,7 @@ use Collective\Annotations\Routing\Annotations\Annotations\Get;
 use Collective\Annotations\Routing\Annotations\Annotations\Middleware;
 use Collective\Annotations\Routing\Annotations\Annotations\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class QuestionController extends Controller
 {
@@ -31,10 +32,10 @@ class QuestionController extends Controller
             'why?',
             'where?',
         ];
-        shuffle($placeholder);
+
         $data = [
             'questions' => $questions,
-            'placeholder' => array_shift($placeholder),
+            'placeholder' => Arr::first(Arr::random($placeholder, 1)),
         ];
 
         return view('main-question', $data);
