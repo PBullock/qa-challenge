@@ -6,7 +6,7 @@
 
     @component('partials.answers.list', ['answers' => $answers])
         @slot('header')
-            <h2>All the answers:</h2>
+            <h2 class="h3">All the answers:</h2>
         @endslot
     @endcomponent
 @endsection

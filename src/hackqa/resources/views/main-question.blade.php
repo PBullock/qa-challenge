@@ -8,7 +8,7 @@
     <div>
         @component('partials.questions.list', ['questions' => $questions])
             @slot('header')
-                <h2>All the questions:</h2>
+                <h2 class="h3">All the questions:</h2>
             @endslot
         @endcomponent
     </div>

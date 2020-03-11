@@ -22,10 +22,6 @@ class AnswerController extends Controller
      */
     public function addAnswer(Request $request, $questionId)
     {
-        $validated = $request->validate([
-            'answer' => 'required|min:2'
-        ]);
-
         $answerInput = $request->get('answer');
         $question = Question::where('question_id', $questionId)->first();
 
@@ -36,7 +32,7 @@ class AnswerController extends Controller
         $answer->question_id = $qId;
         $answer->save();
 
-        $question->answer_count = $question->answer_count+1;
+        $question->answer_count = $question->answer_count + 1;
         $question->save();
 
         return redirect("question/$qId")->with(['questionId' => $questionId]);

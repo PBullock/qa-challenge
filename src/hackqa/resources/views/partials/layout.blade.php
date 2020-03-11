@@ -18,12 +18,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 text-center">
+        <div class="col-sm-12 text-center mb-4">
             <a href="/"><h1 class="text-dark">Q&A Simple w/ Bootstrap</h1></a>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-6 d-md-flex flex-column justify-content-around">
+        <div class="col-sm-12 col-md-6 offset-md-3">
             @yield('content')
         </div>
     </div>

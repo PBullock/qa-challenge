@@ -29,12 +29,12 @@ class QuestionController extends Controller
             'who?',
             'what?',
             'why?',
-            'where?'
-            ];
+            'where?',
+        ];
         shuffle($placeholder);
         $data = [
             'questions' => $questions,
-            'placeholder' => array_shift($placeholder)
+            'placeholder' => array_shift($placeholder),
         ];
 
         return view('main-question', $data);
@@ -60,7 +60,6 @@ class QuestionController extends Controller
         $question->save();
 
         return redirect('/');
-
     }
 
 
@@ -81,6 +80,6 @@ class QuestionController extends Controller
 
         $answers = Answer::where('question_id', $questionId)->get();
 
-        return view('main-answer', ['answers' => $answers, 'question' => $question ]);
+        return view('main-answer', ['answers' => $answers, 'question' => $question]);
     }
 }
