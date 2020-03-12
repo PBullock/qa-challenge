@@ -21,12 +21,12 @@ services:
 
   web:
     build: ./docker
-    env_file: ./.env
+    env_file: ./.debug.env
     ports:
       - 8500:80
       - 9000
     volumes:
-      - ./src:/var/www/html:z
+      - ./:/var/www/html:z
 
 volumes:
   hack-challenge-db:

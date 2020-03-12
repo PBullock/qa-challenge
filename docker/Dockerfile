@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
 #    && echo "xdebug.remote_host=192.168.65.2" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/hackqa/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
@@ -34,5 +34,4 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # RUN cp  /usr/local/etc/php/php.ini-development /usr/local/etc/php/conf.d/php.ini
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer global require laravel/installer
 RUN export PATH="$HOME/.composer/vendor/bin:$PATH"
