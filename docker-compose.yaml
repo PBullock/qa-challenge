@@ -2,20 +2,31 @@ version: '3.7'
 
 services:
 
+#  db:
+#    image: mariadb
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: hack_qa
+#      MYSQL_USER: root
+#      MYSQL_ROOT_PASSWORD: hackqapass
+#    volumes:
+#      - ./docker/db:/var/db
+#      - hack-challenge-db:/var/lib/mysql
+
   db:
-    image: mariadb
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: hackqapass
+    volumes:
+      - hack-challenge-db1:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
     restart: always
     environment:
-      MYSQL_DATABASE: hack_qa
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: hackqapass
-    volumes:
-      - ./docker/db:/var/db
-      - hack-challenge-db:/var/lib/mysql
-
-  adminer:
-    image: adminer
-    restart: always
+      PGADMIN_LISTEN_PORT: 8080
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: testtest
     ports:
       - 8600:8080
 
@@ -29,4 +40,4 @@ services:
       - ./:/var/www/html:z
 
 volumes:
-  hack-challenge-db:
+  hack-challenge-db1:

@@ -3,6 +3,10 @@ FROM php:7.3-apache
 RUN a2enmod rewrite
 
 RUN apt-get update && apt-get install -y \
+        libicu-dev \
+        zlib1g-dev \
+        libsqlite3-dev \
+        libpq-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
@@ -14,8 +18,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install zip \
     && docker-php-ext-install mysqli pdo pdo_mysql \
-    && docker-php-ext-enable mysqli
-
+    && docker-php-ext-enable mysqli \
+    && docker-php-ext-install pgsql pdo_pgsql
 #RUN yes | pecl install xdebug \
 #	&&  docker-php-ext-enable xdebug \
 #    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
@@ -24,6 +28,8 @@ RUN apt-get update && apt-get install -y \
 #    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/xdebug.ini \
 #    && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/xdebug.ini \
 #    && echo "xdebug.remote_host=192.168.65.2" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+
 
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
